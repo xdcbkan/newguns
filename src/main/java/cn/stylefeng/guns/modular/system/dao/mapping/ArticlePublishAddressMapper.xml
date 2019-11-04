@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.ArticlePublishAddressMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.ArticlePublishAddress">
+        <id column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="article_id" property="articleId" />
+        <result column="address1" property="address1" />
+        <result column="address2" property="address2" />
+        <result column="address3" property="address3" />
+        <result column="address4" property="address4" />
+        <result column="address5" property="address5" />
+        <result column="address6" property="address6" />
+        <result column="address7" property="address7" />
+        <result column="address8" property="address8" />
+        <result column="address9" property="address9" />
+        <result column="address10" property="address10" />
+        <result column="address11" property="address11" />
+        <result column="address12" property="address12" />
+        <result column="address13" property="address13" />
+        <result column="address14" property="address14" />
+        <result column="address15" property="address15" />
+        <result column="address16" property="address16" />
+        <result column="address17" property="address17" />
+        <result column="address18" property="address18" />
+        <result column="address19" property="address19" />
+        <result column="address20" property="address20" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, article_id, address1, address2, address3, address4, address5, address6, address7, address8, address9, address10, address11, address12, address13, address14, address15, address16, address17, address18, address19, address20
+    </sql>
+
+    <select id="selectAddress" resultType="cn.stylefeng.guns.modular.system.model.ArticlePublishAddress">
+        select <include refid="Base_Column_List"/> from article_publish_address where article_id = #{articleId};
+    </select>
+
+    <update id="updateAddress" parameterType="cn.stylefeng.guns.modular.system.model.ArticlePublishAddress">
+        update article_publish_address set address1 = #{address1},address2 = #{address2},address3 = #{address3},address4 = #{address4},address5 = #{address5},
+        address6 = #{address6},address7 = #{address7},address8 = #{address8},address9 = #{address9},address10 = #{address10},address11 = #{address11},address12 = #{address12},
+        address13 = #{address13},address14 = #{address14},address15 = #{address15},address16 = #{address16},address17 = #{address17},address18 = #{address18},
+        address19 = #{address19},address20 = #{address20} where article_id = #{articleId}
+
+    </update>
+
+    <select id="getCount" resultType="int">
+        select count(id) from article_publish_address where article_id = #{articleId};
+    </select>
+
+</mapper>

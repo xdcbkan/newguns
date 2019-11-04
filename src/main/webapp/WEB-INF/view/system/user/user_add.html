@@ -1,0 +1,115 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+	<div class="ibox-content">
+		<div class="form-horizontal" id="userInfoForm">
+
+			<input type="hidden" id="id" value="">
+
+			<div class="row">
+				<div class="col-sm-6 b-r">
+					<#input id="account" name="账户" underline="true"  />
+
+					<#input id="password" name="密码" underline="true" type="password"/>
+
+					<#input id="rePassword" name="确认密码" type="password" underline="true"/>
+
+					<#input id="name" name="姓名" underline="true" />
+
+					<#input id="birthday" name="出生日期" underline="true" type="text"/>
+
+					<#select id="sex" name="性别" underline="true">
+					<option value="1">男</option>
+					<option value="2">女</option>
+					</#select>
+					<#input id="roleid" name="角色" underline="true" disabled="disabled"/>
+					<#input id="phone" name="电话" underline="true"/>
+					<#input id="alipay" name="支付宝号" underline="true"/>
+					<#input id="email" name="邮箱" underline="true" type="email" />
+
+					<#input id="officeAddress" name="办公地点" underline="true" />
+
+					<#input id="entryTime" name="入职时间" underline="true" type="text"/>
+
+					<#input id="wechatid" name="微信" underline="true" />
+
+					<#input id="qqid" name="QQ" underline="true" />
+
+					<#input id="sinaid" name="微博" underline="true" />
+			</div>
+			<div class="col-sm-6">
+				<div id="driverInfoContent">
+					<#select id="employeeType" name="员工类型" underline="true" >
+					<option value="1">合作</option>
+					<option value="2">兼职</option>
+					</#select>
+					<#input id="nation" name="民族" underline="true"/>
+					<#select id="maritalStatus" name="婚姻状况" underline="true" >
+					<option value="1">未婚</option>
+					<option value="2">已婚</option>
+					<option value="3">离异</option>
+					</#select>
+					<#input id="idcard" name="身份证号" underline="true" />
+					<#select id="registrationType" name="户籍类型" underline="true" >
+					<option value="1">城镇</option>
+					<option value="2">农村</option>
+					</#select>
+					<#input id="idAddress" name="身份证地址" underline="true" />
+					<#input id="certificateValidityPeriod" name="证件有效期" underline="true" type="text"/>
+					<h3>其他信息</h3><hr>
+					<#select id="education" name="学历" underline="true" >
+					<option value="1">本科</option>
+					<option value="2">大专</option>
+					<option value="3">博士</option>
+					<option value="4">硕士</option>
+					<option value="5">高中</option>
+					</#select>
+					<#input id="university" name="毕业院校" underline="true"/>
+
+					<#input id="graduationTime" name="毕业时间" underline="true"  type="text" />
+
+					<#input id="major" name="所学专业" underline="true"/>
+
+					<#input id="firstTimeWorke" name="首次参加工作时间" underline="true" type="text"/>
+					<#input id="currentAddress" name="现住地址" underline="true" />
+
+					<#select id="politicalOutlook" name="政治面貌" underline="true" >
+					<option value="0">无</option>
+					<option value="1">团员</option>
+					<option value="2">党员</option>
+					</#select>
+
+					<#input id="socialSecurityAccount" name="个人社保账号" underline="true" />
+					<#input id="providentFundAccount" name="个人公积金账号" />
+				</div>
+			</div>
+		</div>
+
+		<div class="row btn-group-m-t">
+			<div class="col-sm-10">
+				<#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="UserInfoDlg.addSubmit()"/>
+				<#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="UserInfoDlg.close()"/>
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
+<script src="${ctxPath}/static/modular/system/user/user_info.js"></script>
+<script>
+    laydate.render({
+        elem: '#birthday'
+    });
+    laydate.render({
+        elem: '#graduationTime'
+    });
+    laydate.render({
+        elem: '#firstTimeWorke'
+    });
+    laydate.render({
+        elem: '#entryTime'
+    });
+    laydate.render({
+        elem: '#certificateValidityPeriod'
+    });
+</script>
+@}

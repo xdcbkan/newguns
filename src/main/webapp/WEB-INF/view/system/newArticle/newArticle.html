@@ -1,0 +1,62 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>个人文章管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <#NameCon id="condition" name="名称" placeholder="主标题/文章编号" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="articleStatus" name="文章状态" >
+                                <option value="20">全部</option>
+                                <option value="1">草稿</option>
+                                <option value="0">待修改</option>
+                                <option value="11">已完成</option>
+                                <option value="8">已作废</option>
+                            </#SelectCon>
+                        </div>
+                        <div class="col-sm-2">
+                                <#SelectCon id="prescription" name="时效性" >
+                                <option value="0">全部</option>
+                                <option value="1">非实时或知识类文章</option>
+                                <option value="2">精品类文章</option>
+                                <option value="3">实时类文章</option>
+                                <option value="4">其他类文章</option>
+                            </#SelectCon>
+                        </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="articleTypeId" name="类型" >
+                                <option value="0">全部</option>
+                                @for(articleType in articleTypes){
+                                <option value="${articleType.id}">${articleType.name}</option>
+                                @}
+                            </#SelectCon>
+                        </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="NewArticle.search()"/>
+                                <#button name="重置" icon="fa-trash" clickFun="NewArticle.resetSearch()" space="true"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="NewArticleTableToolbar" role="group">
+                            @if(shiro.hasPermission("/newArticle/add")){
+                                <#button name="新增文章" icon="fa-plus" clickFun="NewArticle.openAddNewArticle()"/>
+                            @}
+                            @if(shiro.hasPermission("/newArticle/update")){
+                                <#button name="编辑文章" icon="fa-edit" clickFun="NewArticle.openNewArticleDetail()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="NewArticleTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/newArticle/newArticle.js"></script>
+@}

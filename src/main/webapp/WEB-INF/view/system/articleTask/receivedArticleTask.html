@@ -1,0 +1,63 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>已领取文章管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="title" name="名称" placeholder="根据主/副标题查询文章" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="timelinessCategory" name="时效性" >
+                                <option value="">全部</option>
+                                <option value="1">非实时或知识类文章</option>
+                                <option value="2">精品类文章</option>
+                                <option value="3">实时类文章</option>
+                                <option value="4">其他类文章</option>
+                                </#SelectCon>
+                             </div>
+                            <div class="col-sm-3">
+                                <#SelectCon id="type" name="文章分类" >
+                                <option value="">全部</option>
+                                <option value="1">育儿</option>
+                                <option value="2">财经</option>
+                                <option value="3">军事</option>
+                                <option value="4">汽车</option>
+                                <option value="5">科技</option>
+                                <option value="6">国际</option>
+                                <option value="7">游戏</option>
+                                <option value="8">时尚</option>
+                                <option value="9">历史</option>
+                                <option value="10">社会</option>
+                                <option value="11">美食</option>
+                                <option value="12">探索</option>
+                                <option value="13">旅游</option>
+                                <option value="14">体育</option>
+                                <option value="15">健康</option>
+                                <option value="16">养生</option>
+                                <option value="17">娱乐</option>
+                                <option value="18">搞笑</option>
+                                <option value="19">教育</option>
+                                <option value="20">星座</option>
+                                <option value="21">其他</option>
+                                </#SelectCon>
+                             </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="ReceivedArticleTask.search()"/>
+                                <#button name="重置" icon="fa-trash" clickFun="ReceivedArticleTask.resetSearch()" space="true"/>
+                            </div>
+                        </div>
+                        <#table id="ReceivedArticleTaskTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/articleTask/receivedArticleTask.js"></script>
+@}

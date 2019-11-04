@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>项目类型管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="ProjectType.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="ProjectTypeTableToolbar" role="group">
+                            @if(shiro.hasPermission("/projectType/add")){
+                                <#button name="添加" icon="fa-plus" clickFun="ProjectType.openAddProjectType()"/>
+                            @}
+                            @if(shiro.hasPermission("/projectType/update")){
+                                <#button name="修改" icon="fa-edit" clickFun="ProjectType.openProjectTypeDetail()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="ProjectTypeTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/projectType/projectType.js"></script>
+@}

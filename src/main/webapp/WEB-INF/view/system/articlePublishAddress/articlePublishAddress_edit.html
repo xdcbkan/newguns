@@ -1,0 +1,48 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键" value="${item.id}" underline="true"/>
+                            <#input id="userId" name="用户id(运营人员id)" value="${item.userId}" underline="true"/>
+                            <#input id="articleId" name="文章id" value="${item.articleId}" underline="true"/>
+                            <#input id="address1" name="发布地址1" value="${item.address1}" underline="true"/>
+                            <#input id="address2" name="发布地址2" value="${item.address2}" underline="true"/>
+                            <#input id="address3" name="发布地址3" value="${item.address3}" underline="true"/>
+                            <#input id="address4" name="发布地址4" value="${item.address4}" underline="true"/>
+                            <#input id="address5" name="发布地址5" value="${item.address5}" underline="true"/>
+                            <#input id="address6" name="发布地址6" value="${item.address6}" underline="true"/>
+                            <#input id="address7" name="发布地址7" value="${item.address7}" underline="true"/>
+                            <#input id="address8" name="发布地址8" value="${item.address8}" underline="true"/>
+                            <#input id="address9" name="发布地址9" value="${item.address9}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="address10" name="发布地址10" value="${item.address10}" underline="true"/>
+                            <#input id="address11" name="发布地址11" value="${item.address11}" underline="true"/>
+                            <#input id="address12" name="发布地址12" value="${item.address12}" underline="true"/>
+                            <#input id="address13" name="发布地址13" value="${item.address13}" underline="true"/>
+                            <#input id="address14" name="发布地址14" value="${item.address14}" underline="true"/>
+                            <#input id="address15" name="发布地址15" value="${item.address15}" underline="true"/>
+                            <#input id="address16" name="发布地址16" value="${item.address16}" underline="true"/>
+                            <#input id="address17" name="发布地址17" value="${item.address17}" underline="true"/>
+                            <#input id="address18" name="发布地址18" value="${item.address18}" underline="true"/>
+                            <#input id="address19" name="发布地址19" value="${item.address19}" underline="true"/>
+                            <#input id="address20" name="发布地址20" value="${item.address20}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ArticlePublishAddressInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ArticlePublishAddressInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/articlePublishAddress/articlePublishAddress_info.js"></script>
+@}

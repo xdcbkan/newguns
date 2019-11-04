@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.HistoricalArticleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.HistoricalArticle">
+        <id column="id" property="id"/>
+        <result column="article_num" property="articleNum"/>
+        <result column="main_title" property="mainTitle"/>
+        <result column="subheading" property="subheading"/>
+        <result column="content" property="content"/>
+        <result column="prefix" property="prefix"/>
+        <result column="article_status" property="articleStatus"/>
+        <result column="picture_num" property="pictureNum"/>
+        <result column="article_type_id" property="articleTypeId"/>
+        <result column="examine1_id" property="examine1Id"/>
+        <result column="examine2_id" property="examine2Id"/>
+        <result column="layout_id" property="layoutId"/>
+        <result column="operate_id" property="operateId"/>
+        <result column="purchase_id" property="purchaseId"/>
+        <result column="editor_new_flag" property="editorNewFlag"/>
+        <result column="return_message" property="returnMessage"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="create_user_id" property="createUserId"/>
+        <result column="update_user_id" property="updateUserId"/>
+        <result column="prescription" property="prescription"/>
+        <result column="label" property="label"/>
+        <result column="project_type_id" property="projectTypeId"/>
+        <result column="illustration_type" property="illustrationType"/>
+        <result column="new_article_id" property="newArticleId"/>
+        <result column="new_main_title" property="newMainTitle"/>
+        <result column="new_subheading" property="newSubheading"/>
+        <result column="release_type" property="releaseType"/>
+        <result column="word_count" property="wordCount"/>
+        <result column="is_download" property="isDownload"/>
+        <result column="dowanload_url" property="dowanloadUrl"/>
+        <result column="dowanload_url_shen_he" property="dowanloadUrlShenHe"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, article_num, main_title, subheading, content, prefix, article_status, picture_num, article_type_id, examine1_id, examine2_id, layout_id, operate_id, purchase_id, editor_new_flag, return_message, create_time, update_time, create_user_id, update_user_id, new_article_id,
+        prescription,label,project_type_id,illustration_type, new_main_title, new_subheading, release_type, is_download,word_count, dowanload_url, dowanload_url_shen_he
+    </sql>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Article_List">
+        id, article_num, main_title, subheading, content, prefix, article_status, picture_num, article_type_id, examine1_id, examine2_id, layout_id, operate_id, purchase_id, editor_new_flag, return_message, create_time, update_time, create_user_id, update_user_id,dowanload_url_shen_he,prescription,label,project_type_id,illustration_type, new_main_title, new_subheading, release_type,is_download, word_count, dowanload_url
+    </sql>
+
+    <select id="selectArticleList" resultType="map">
+        select
+        <include refid="Base_Article_List"/>
+        from new_article
+        <where>
+            <if test=" mainTitle != null and mainTitle != '' ">
+                and (main_title like CONCAT('%',#{mainTitle},'%')
+                or article_num like CONCAT('%',#{mainTitle},'%'))
+            </if>
+            <if test=" articleTypeId != null and articleTypeId != ''and articleTypeId != 0 ">
+                and article_type_id = #{articleTypeId}
+            </if>
+            <if test=" prescription != null and prescription != '' and prescription != 0 ">
+                and prescription = #{prescription}
+            </if>
+            <if test=" articleStatus != null and articleStatus != ''">
+                and article_status = #{articleStatus}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+    <!--查询-->
+    <update id="updateHistory" parameterType="cn.stylefeng.guns.modular.system.model.NewArticle">
+        update historical_article set article_status = 14 where new_article_id = #{newArticleId} and editor_new_flag = 1
+    </update>
+
+    <select id="getList" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from historical_article where new_article_id = #{newArticleId} order by create_time desc
+    </select>
+
+    <!--List<Map<String, Object>> getPersonalOperationRecord(@Param("condition") String condition, @Param("articleTypeId") Integer articleTypeId, @Param("prescription") Integer prescription, @Param("userId") Integer userId);-->
+    <select id="getPersonalOperationRecord" resultType="map">
+        select
+        <include refid="Base_Article_List"/>
+        from historical_article
+        <where>
+            (examine1_id = #{userId}
+            or examine2_id = #{userId}
+            or layout_id = #{userId})
+            <if test=" condition != null and condition != '' ">
+                and (main_title like CONCAT('%',#{condition},'%')
+                or article_num like CONCAT('%',#{condition},'%')
+                or subheading like CONCAT('%',#{condition},'%'))
+            </if>
+            <if test=" articleTypeId != null and articleTypeId != ''and articleTypeId != 0 ">
+                and article_type_id = #{articleTypeId}
+            </if>
+            <if test=" prescription != null and prescription != '' and prescription != 0 ">
+                and prescription = #{prescription}
+            </if>
+        </where>
+        order by update_time desc
+        limit 200
+    </select>
+
+</mapper>

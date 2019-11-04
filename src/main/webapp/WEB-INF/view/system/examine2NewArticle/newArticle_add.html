@@ -1,0 +1,46 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键id" underline="true"/>
+                            <#input id="articleNum" name="文章编号" underline="true"/>
+                            <#input id="mainTitle" name="主标题" underline="true"/>
+                            <#input id="subheading" name="副标题" underline="true"/>
+                            <#input id="content" name="文章内容" underline="true"/>
+                            <#input id="prefix" name="前缀0-6  提交 审1修1--- 审2修2" underline="true"/>
+                            <#input id="articleStatus" name="草稿  待审1 待审2  审1审核中  审2审核中  审1拒 审2拒 作废  待配图  配图中  文章完成   运营领取  已被购买" underline="true"/>
+                            <#input id="pictureNum" name="配图数" underline="true"/>
+                            <#input id="articleTypeId" name="文章分类id" underline="true"/>
+                            <#input id="examine1Id" name="审1领取人id" underline="true"/>
+                            <#input id="examine2Id" name="审2领取人id"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="layoutId" name="配图人id" underline="true"/>
+                            <#input id="operateId" name="运营领取人id" underline="true"/>
+                            <#input id="purchaseId" name="购买人id" underline="true"/>
+                            <#input id="editorNewFlag" name="0非 1 是最新" underline="true"/>
+                            <#input id="returnMessage" name="退回/作废原因" underline="true"/>
+                            <#input id="createTime" name="创建时间" underline="true"/>
+                            <#input id="updateTime" name="修改时间" underline="true"/>
+                            <#input id="createUserId" name="创建人" underline="true"/>
+                            <#input id="updateUserId" name="修改人" underline="true"/>
+                            <#input id="articlePrice" name="文章单价" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="NewArticleInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="NewArticleInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/examine2NewArticle/newArticle_info.js"></script>
+@}

@@ -1,0 +1,32 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>用户信息历史版本管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="HistoryUserinfo.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="HistoryUserinfoTableToolbar" role="group">
+                            @if(shiro.hasPermission("/historyUserinfo/update")){
+                                <#button name="查看详情" icon="fa-edit" clickFun="HistoryUserinfo.openHistoryUserinfoDetail()"/>
+                            @}
+                        </div>
+                        <#table id="HistoryUserinfoTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/historyUserinfo/historyUserinfo.js"></script>
+@}

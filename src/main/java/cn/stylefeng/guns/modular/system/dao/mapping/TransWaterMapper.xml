@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.TransWaterMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.TransWater">
+        <id column="id" property="id" />
+        <result column="amount" property="amount" />
+        <result column="trans_status" property="transStatus" />
+        <result column="create_user" property="createUser" />
+        <result column="trans_type" property="transType" />
+        <result column="points_balance" property="pointsBalance" />
+        <result column="article_id" property="articleId" />
+        <result column="user_id" property="userId" />
+        <result column="create_time" property="createTime" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, amount, trans_status, create_user, trans_type, points_balance, article_id, user_id, create_time, remark
+    </sql>
+
+
+    <select id="selectTransWaterList" resultType="map">
+        select <include refid="Base_Column_List"/> from trans_water
+        <where>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="createUser != null and createUser != ''">
+                and create_user = #{createUser}
+            </if>
+            <if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+                and (create_time between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+            </if>
+        </where>
+        order by create_time desc
+    </select>
+
+</mapper>

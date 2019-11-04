@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键" value="${item.id}" underline="true"/>
+                            <#input id="userId" name="用户id" value="${item.userId}" underline="true"/>
+                            <#input id="submit" name="提交数" value="${item.submit}" underline="true"/>
+                            <#input id="examine1Return" name="审1退回数" value="${item.examine1Return}" underline="true"/>
+                            <#input id="examine2Return" name="审2退回数" value="${item.examine2Return}" underline="true"/>
+                            <#input id="examine1ReturnEdit1" name="审1修1" value="${item.examine1ReturnEdit1}" underline="true"/>
+                            <#input id="examine1ReturnEdit2" name="审1修1" value="${item.examine1ReturnEdit2}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="examine2ReturnEdit1" name="审2修1" value="${item.examine2ReturnEdit1}" underline="true"/>
+                            <#input id="examine2ReturnEdit2" name="审2修2" value="${item.examine2ReturnEdit2}" underline="true"/>
+                            <#input id="abolish" name="作废数" value="${item.abolish}" underline="true"/>
+                            <#input id="pass" name="审2通过的数量-作废数" value="${item.pass}" underline="true"/>
+                            <#input id="settlementAmount" name="结算金额" value="${item.settlementAmount}" underline="true"/>
+                            <#input id="statisticsTime" name="统计日期" value="${item.statisticsTime}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="EditorStatisticsMonthInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="EditorStatisticsMonthInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/editorStatisticsMonth/editorStatisticsMonth_info.js"></script>
+@}

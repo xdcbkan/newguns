@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.InvitationCodeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.InvitationCode">
+        <id column="id" property="id"/>
+        <result column="invitation_code" property="invitationCode"/>
+        <result column="amount" property="amount"/>
+        <result column="create_user_id" property="createUserId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, invitation_code, amount, create_user_id
+    </sql>
+
+    <!--List<Map<String, Object>> selectInvitationCodes();-->
+    <select id="selectInvitationCodes" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from invitation_code
+    </select>
+
+
+    <!--根据邀请码查询-->
+    <select id="selectByCode" resultType="cn.stylefeng.guns.modular.system.model.InvitationCode">
+        select <include refid="Base_Column_List" /> from invitation_code where invitation_code = #{invitationCode}
+    </select>
+
+    <!--int reduceNumber(int id);-->
+    <update id="reduceNumber">
+        update invitation_code
+        set amount = amount-1
+        where id = #{id}
+	</update>
+
+</mapper>

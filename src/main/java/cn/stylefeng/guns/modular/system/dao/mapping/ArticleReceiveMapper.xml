@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.ArticleReceiveMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.ArticleReceive">
+        <id column="id" property="id"/>
+        <result column="article_id" property="articleId"/>
+        <result column="user_id" property="userId"/>
+        <result column="results_enforcement" property="resultsEnforcement"/>
+        <result column="operate_time" property="operateTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, article_id, user_id, results_enforcement, operate_time
+    </sql>
+
+    <!--修改文章记录表-->
+    <update id="updateReceive" parameterType="cn.stylefeng.guns.modular.system.model.ArticleReceive">
+    update article_receive set results_enforcement = #{resultsEnforcement},operate_time = #{operateTime} where article_id = #{articleId} and user_id = #{userId} and results_enforcement = 1
+    </update>
+
+    <!--审核1每日统计内容-->
+    <!--int examine1StatisticsReceive(int examiner1Id);-->
+    <select id="examine1StatisticsReceive" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner1Id}
+        and date(operate_time) = curdate()
+    </select>
+
+    <!--int examine1StatisticsPass(int examiner1Id);-->
+    <select id="examine1StatisticsPass" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner1Id}
+        and date(operate_time) = curdate()
+        and results_enforcement = 2
+    </select>
+
+    <!--int examine1StatisticsUnPass(int examiner1Id);-->
+    <select id="examine1StatisticsUnPass" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner1Id}
+        and date(operate_time) = curdate()
+        and results_enforcement = 3
+    </select>
+
+    <!--int examine1StatisticsExamining(int examiner1Id);-->
+    <select id="examine1StatisticsExamining" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner1Id}
+        and date(operate_time) = curdate()
+        and results_enforcement = 1
+    </select>
+
+    <!--int examine1StatisticsAbolish(int examiner1Id);-->
+    <select id="examine1StatisticsAbolish" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner1Id}
+        and date(operate_time) = curdate()
+        and results_enforcement = 4
+    </select>
+
+
+    <!--审核2每日统计内容-->
+    <!--int examine2StatisticsReceive(int examiner2Id);-->
+    <select id="examine2StatisticsReceive" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner2Id}
+        and date(operate_time) = curdate()
+    </select>
+
+    <!--int examine2StatisticsPass(int examiner2Id);-->
+    <select id="examine2StatisticsPass" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner2Id}
+        and date(operate_time) = curdate()
+        and results_enforcement = 2
+    </select>
+
+    <!--int examine2StatisticsUnPass(int examiner2Id);-->
+    <select id="examine2StatisticsUnPass" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner2Id}
+        and date(operate_time) = curdate()
+        and results_enforcement = 3
+    </select>
+
+    <!--int examine2StatisticsExamining(int examiner2Id);-->
+    <select id="examine2StatisticsExamining" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner2Id}
+        and date(operate_time) = curdate()
+        and results_enforcement = 1
+    </select>
+
+    <!--int examine2StatisticsAbolish(int examiner2Id);-->
+    <select id="examine2StatisticsAbolish" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{examiner2Id}
+        and date(operate_time) = curdate()
+        and results_enforcement = 4
+    </select>
+
+
+    <!--配图每日统计内容-->
+    <!--int layoutStatisticReceive(int layoutId);-->
+    <select id="layoutStatisticReceive" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{layoutId}
+        and date(operate_time) = curdate()
+    </select>
+
+    <!--int layoutStatisticArticleNum(int layoutId);-->
+    <select id="layoutStatisticArticleNum" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{layoutId}
+        and date(operate_time) = curdate()
+        and results_enforcement = 5
+    </select>
+
+    <!--int layoutStatisticPictureNum(int layoutId);-->
+    <select id="layoutStatisticPictureNum" resultType="int">
+        select sum(n.picture_num)
+        from new_article n
+        where n.id in
+        (
+        select a.article_id
+        from article_receive a
+        where a.user_id = #{layoutId}
+        and date(a.operate_time) = curdate()
+        and a.results_enforcement = 5
+        )
+    </select>
+
+    <!--运营每日统计内容-->
+    <!--int operatorStatisticReceive(int operatorId);-->
+    <select id="operatorStatisticReceive" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{operatorId}
+        and date(operate_time) = curdate()
+    </select>
+
+    <!--int operatorStatisticAbolish(int operatorId);-->
+    <select id="operatorStatisticAbolish" resultType="int">
+        select count(id)
+        from article_receive
+        where user_id = #{operatorId}
+        and date(operate_time) = curdate()
+        and results_enforcement = 4
+    </select>
+
+</mapper>
+

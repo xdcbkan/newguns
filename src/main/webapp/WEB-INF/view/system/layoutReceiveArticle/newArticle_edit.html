@@ -1,0 +1,97 @@
+@layout("/common/_container.html"){
+<style type="text/css">
+    .toolbar {
+        border: 1px solid #ccc;/*设置下拉棒*/
+    }
+    .w-e-text-container{
+        height: 450px !important;/*!important是重点，因为原div是行内样式设置的高度300px*/
+    }
+</style>
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="hidden" id="id" value="${item.id}">
+                    <input type="hidden" id="articleNum" value="${item.articleNum}">
+                    <#input id="newMainTitle" name="主标题" value="${item.newMainTitle}" underline="true" disabled="disabled"/>
+                    <#select id="projectTypeId" name="项目类别" underline="true" >
+                    <option value="">无</option>
+                    @for(projectType in projectTypes){
+                    <option value="${projectType.id}">${projectType.name}</option>
+                    @}
+                    </#select>
+                    <#input id ="pictureNum" name = "配图数" placeholder="配图完成时,请填写该文章配图的数量" />
+                </div>
+                <div class="col-sm-6">
+                    <#input id="newSubheading" name="副标题" value="${item.newSubheading}" underline="true" disabled="disabled"/>
+                    <#select id="illustrationType" name="插图类别">
+                    <option value="1">实景图</option>
+                    <option value="2">手绘图</option>
+                    </#select>
+                </div>
+            </div>
+
+            <div id="content" name="content" class="toolbar">
+                <div>${item.content}</div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="完成提交" id="ensure" icon="fa-check" clickFun="NewArticleInfoDlg.layoutSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="NewArticleInfoDlg.close()" space="true"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript" src="${ctxPath}/static/js/wangEditor/release/wangEditor.min.js"></script>
+<script src="${ctxPath}/static/modular/system/layoutReceiveArticle/newArticle_info.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var E = window.wangEditor;
+        var editor = new E('#content');
+        var articleNum = $("#articleNum").val();
+        var content =  $("#content");
+        editor.customConfig.menus = [
+            'head',  // 标题
+            'bold',  // 粗体
+            'fontSize',  // 字号
+            'fontName',  // 字体
+            'italic',  // 斜体
+            'underline',  // 下划线
+            'strikeThrough',  // 删除线
+            'foreColor',  // 文字颜色
+            'backColor',  // 背景颜色
+            'list',  // 列表
+            'justify',  // 对齐方式
+            'quote',  // 引用
+            'emoticon',  // 表情
+            'image',  // 插入图片
+            'table',  // 表格
+            'undo',  // 撤销
+            'redo'  // 重复
+        ];
+        // 配置服务器端地址,也就是controller的请求路径，不带项目路径，前面没有/
+        editor.customConfig.uploadImgServer = '${ctxPath}/uploadJson';
+        editor.customConfig.uploadFileName = 'myFileName';
+        editor.customConfig.showLinkImg = false;
+        editor.customConfig.uploadImgHooks = {
+            customInsert: function (insertImg, result, editor) {
+                var url = result.url;
+                insertImg(url);
+            }
+        };
+        editor.customConfig.onchange = function (html) {
+            content.val(html);
+        };
+        editor.customConfig.uploadImgParams = {
+            articleNum: articleNum
+        };
+        //创建编辑器
+        editor.create();
+
+    })
+</script>
+@}

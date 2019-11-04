@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.Examine1StatisticsMonthMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.Examine1StatisticsMonth">
+        <id column="id" property="id"/>
+        <result column="receive" property="receive"/>
+        <result column="pass" property="pass"/>
+        <result column="unpass" property="unpass"/>
+        <result column="examining_num" property="examiningNum"/>
+        <result column="user_id" property="userId"/>
+        <result column="abolish" property="abolish"/>
+        <result column="statistics_time" property="statisticsTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, receive, pass, unpass, examining_num, user_id, abolish, statistics_time
+    </sql>
+
+    <!--插入字段-->
+    <sql id="Insert_Column">
+        receive, pass, unpass, examining_num, user_id, abolish, statistics_time
+    </sql>
+
+    <!--Examine1StatisticsMonth statisticExamine1LastMonth(int examine1Id);-->
+    <select id="statisticExamine1LastMonth" resultType="cn.stylefeng.guns.modular.system.model.Examine1StatisticsMonth">
+        select sum(receive) receive, sum(pass) pass, sum(unpass) unpass, sum(examining_num) examining_num, sum(abolish) abolish
+        from examine1_statistics_day
+        where user_id = #{examine1Id}
+        and date_format(statistics_time,'%Y-%m') = date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m')
+    </select>
+
+    <!--int insertExamine1StatisticsMonth(List<Examine1StatisticsMonth> examine1StatisticsMonths);-->
+    <insert id="insertExamine1StatisticsMonth" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into examine1_statistics_month
+        (<include refid="Insert_Column"/>)
+        values
+        <foreach collection="list" item="Examine1StatisticsMonth" index="index" separator=",">
+            (#{Examine1StatisticsMonth.receive}, #{Examine1StatisticsMonth.pass}, #{Examine1StatisticsMonth.unpass},
+            #{Examine1StatisticsMonth.examiningNum}, #{Examine1StatisticsMonth.userId}, #{Examine1StatisticsMonth.abolish}, sysdate()
+            )
+        </foreach>
+    </insert>
+
+    <!--月统计列表查询-->
+    <select id="selectMonthList" resultType="map">
+        select <include refid="Base_Column_List"/> from examine1_statistics_month
+        <where>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+                and (statistics_time between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+            </if>
+        </where>
+    </select>
+
+</mapper>

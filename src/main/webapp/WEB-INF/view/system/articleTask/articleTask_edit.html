@@ -1,0 +1,75 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+            <input type="hidden" id="id" value="${item.id}">
+            <div class="row">
+                <div class="col-sm-6">
+                    <#input id="mainTitle" name="主标题" value="${item.mainTitle}" />
+                    <#select id="timelinessCategory" name="时效性" value="${item.timelinessCategory}" >
+                    <option value="1">非实时或知识类文章</option>
+                    <option value="2">精品类文章</option>
+                    <option value="3">实时类文章</option>
+                    <option value="4">其他类文章</option>
+                </#select>
+                </div>
+                <div class="col-sm-6">
+                    <#input id="subheading" name="副标题" value="${item.subheading}"/>
+                    <#select id="type" name="文章分类">
+                        @for(articleType in articleTypeList){
+                            <option value="${articleType.id}" ${articleType.id == item.type?'selected': ''}>${articleType.name}</option>
+                        @}
+                    </#select>
+                </div>
+                <div class="col-sm-6 ">
+                    <#input id="url" name="url地址" value="${item.url}"/>
+                </div>
+                <textarea id="content" name="content" style="width:1000px;height:500px;"
+                          placeholder="拖动输入框右下角可拉大范围">${item.content}</textarea>
+            </div>
+        </div>
+        <div class="row btn-group-m-t">
+            <div class="col-sm-10">
+                <#button btnCss="info" name="提交" id="ensure" icon="fa-check"
+                clickFun="ArticleTaskInfoDlg.editSubmit()"/>
+                <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser"
+                clickFun="ArticleTaskInfoDlg.close()"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<script src="${ctxPath}/static/modular/system/articleTask/articleTask_info.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/editor/kindeditor-all.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/editor/lang/zh-CN.js"></script>
+<link rel="stylesheet" href="${ctxPath}/static/js/editor/themes/default/default.css"/>
+<script type="text/javascript">
+    var editor1;
+    KindEditor.ready(function (K) {
+        editor1 = K.create('#content', {
+            resizeType: 2,
+            allowPreviewEmoticons: false,
+            allowImageUpload: true,//允许上传图片
+            allowFileManager: true, //允许对上传图片进行管理
+            uploadJson: '${ctxPath}/uploadJson', //上传图片的java代码，只不过放在jsp中
+            fileManagerJson: '${ctxPath}/fileManagerJson',
+            afterUpload: function () {
+                this.sync();
+            }, //图片上传后，将上传内容同步到textarea中
+            afterBlur: function () {
+                this.sync();
+            },   ////失去焦点时，将上传内容同步到textarea中
+            items: [
+                'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+                'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink']
+        });
+    });
+</script>
+@}

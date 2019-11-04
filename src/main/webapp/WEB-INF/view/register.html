@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JZ文章管理系统</title>
+
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+    <script>if (window.top !== window.self) {
+        window.top.location = window.location;
+    }</script>
+    <script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+    <script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body class="gray-bg">
+
+<div class="middle-box text-center loginscreen">
+    <div style="padding: 100px 0px;">
+        <div>
+            <h1 class="logo-name">JZ</h1>
+        </div>
+        <h3>欢迎加入 JZ文章管理系统</h3>
+        <br/>
+        <h4 style="color: red;">${tips!}</h4>
+        <form class="m-t" role="form" action="${ctxPath}/register" method="post">
+            <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="用户名" required="">
+            </div>
+            <div class="form-group">
+                <input type="text" name="name" class="form-control" placeholder="真实姓名(涉及支付宝转账实名验证)" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="密码" required="">
+            </div>
+            <div class="form-group">
+                <input type="password" name="truePassword" class="form-control" placeholder="确认密码" required="">
+            </div>
+            <div class="form-group">
+                <input type="text" name="invitationCode" class="form-control" placeholder="邀请码" required="">
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b">立 即 注 册</button>
+            <a>注册成功后将自动返回登录页</a>
+            </p>
+        </form>
+    </div>
+</div>
+
+<script>
+</script>
+
+</body>
+
+</html>

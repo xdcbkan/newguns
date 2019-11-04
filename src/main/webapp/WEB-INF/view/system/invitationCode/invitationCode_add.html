@@ -1,0 +1,32 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <!--<div class="col-sm-6 b-r">-->
+                            <!--<#input id="id" name="主键id" underline="true"/>-->
+                            <!--<#input id="invitationCode" name="邀请码"/>-->
+                <!--</div>-->
+
+                <!--<div class="col-sm-6">-->
+                            <!--<#input id="amount" name="注册次数" underline="true"/>-->
+                            <!--<#input id="createUserId" name="创建人id" underline="true"/>-->
+                <!--</div>-->
+                <div class="col-sm-6">
+                <#input id="amount" name="注册次数" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="InvitationCodeInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="InvitationCodeInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/invitationCode/invitationCode_info.js"></script>
+@}

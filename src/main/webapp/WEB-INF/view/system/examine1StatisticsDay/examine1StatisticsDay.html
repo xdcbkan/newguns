@@ -1,0 +1,39 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>审核1每日工作统计管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                <#TimeCon id="beginTime" name="开始日期" isTime="false"/>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <#TimeCon id="endTime" name="结束日期" isTime="false"/>
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Examine1StatisticsDay.search()"/>
+                                <#button name="重置" icon="fa-trash" clickFun="Examine1StatisticsDay.resetSearch()" space="true"/>
+                            </div>
+                        </div>
+                        <#table id="Examine1StatisticsDayTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/examine1StatisticsDay/examine1StatisticsDay.js"></script>
+<script>
+    laydate.render({
+        elem: '#beginTime'
+    });
+    laydate.render({
+        elem: '#endTime'
+    });
+</script>
+@}

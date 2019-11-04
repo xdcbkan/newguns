@@ -1,0 +1,38 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键" underline="true"/>
+                            <#input id="userId" name="用户id" underline="true"/>
+                            <#input id="submit" name="提交数" underline="true"/>
+                            <#input id="examine1Return" name="审1退回数" underline="true"/>
+                            <#input id="examine2Return" name="审2退回数" underline="true"/>
+                            <#input id="examine1ReturnEdit1" name="审1修1" underline="true"/>
+                            <#input id="examine1ReturnEdit2" name="审1修1"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="examine2ReturnEdit1" name="审2修1" underline="true"/>
+                            <#input id="examine2ReturnEdit2" name="审2修2" underline="true"/>
+                            <#input id="abolish" name="作废数" underline="true"/>
+                            <#input id="pass" name="审2通过的数量-作废数" underline="true"/>
+                            <#input id="settlementAmount" name="结算金额" underline="true"/>
+                            <#input id="statisticsTime" name="统计日期" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="EditorStatisticsMonthInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="EditorStatisticsMonthInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/editorStatisticsMonth/editorStatisticsMonth_info.js"></script>
+@}

@@ -1,0 +1,21 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="hidden" id="id" value="${item.id}">
+                    <#input id="mainTitle" name="主标题" value="${item.mainTitle}" underline="true" disabled="disabled"/>
+                </div>
+                <div class="col-sm-6">
+                    <#input id="subheading" name="副标题" value="${item.subheading}" underline="true" disabled="disabled"/>
+                </div>
+                <article>${item.content}</article>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/examine1ReceiveArticle/newArticle.js"></script>
+@}

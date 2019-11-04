@@ -1,0 +1,46 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <input type="hidden" id="id" name="主键" value="${item.id}" underline="true"/>
+                            <#input id="address1" name="百度" value="${item.address1}" underline="true"/>
+                            <#input id="address2" name="今日头条" value="${item.address2}" underline="true"/>
+                            <#input id="address3" name="腾讯快报" value="${item.address3}" underline="true"/>
+                            <#input id="address4" name="腾讯新闻" value="${item.address4}" underline="true"/>
+                            <#input id="address5" name="微信公众号" value="${item.address5}" underline="true"/>
+                            <#input id="address6" name="阿里UC" value="${item.address6}" underline="true"/>
+                            <#input id="address7" name="新浪微博" value="${item.address7}" underline="true"/>
+                            <#input id="address8" name="搜狐" value="${item.address8}" underline="true"/>
+                            <#input id="address9" name="一点资讯" value="${item.address9}" underline="true"/>
+                            <#input id="address10" name="趣头条" value="${item.address10}"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="address11" name="搜狗" value="${item.address11}" underline="true" />
+                            <#input id="address12" name="QUHOO360" value="${item.address12}" underline="true"/>
+                            <#input id="address13" name="网易" value="${item.address13}" underline="true"/>
+                            <#input id="address14" name="京东" value="${item.address14}" underline="true"/>
+                            <#input id="address15" name="淘宝" value="${item.address15}" underline="true"/>
+                            <#input id="address16" name="支付宝" value="${item.address16}" underline="true"/>
+                            <#input id="address17" name="知乎" value="${item.address17}" underline="true"/>
+                            <#input id="address18" name="简书" value="${item.address18}" underline="true"/>
+                            <#input id="address19" name="人民日报" value="${item.address19}" underline="true"/>
+                            <#input id="address20" name="内部官网" value="${item.address20}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ArticlePublishAddressInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ArticlePublishAddressInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/operatorReceiveArticle/newArticle_info.js"></script>
+@}

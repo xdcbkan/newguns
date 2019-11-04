@@ -1,0 +1,35 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="amount" name="数量" value="${item.amount}" underline="true"/>
+                            <#input id="transStatus" name="状态(消费、充值、文编结算、文编提现)" value="${item.transStatus}" underline="true"/>
+                            <#input id="createFlag" name="操作人" value="${item.createFlag}" underline="true"/>
+                            <#input id="transType" name="交易类型(现金、积分)" value="${item.transType}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="pointsBalance" name="积分余额" value="${item.pointsBalance}" underline="true"/>
+                            <#input id="articleId" name="文章id" value="${item.articleId}" underline="true"/>
+                            <#input id="userId" name="交易流水记录的用户id" value="${item.userId}" underline="true"/>
+                            <#input id="createTime" name="交易时间" value="${item.createTime}" underline="true"/>
+                            <#input id="remark" name="备注" value="${item.remark}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="TransWaterInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="TransWaterInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/transWater/transWater_info.js"></script>
+@}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.Examine2StatisticsDayMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.Examine2StatisticsDay">
+        <id column="id" property="id" />
+        <result column="receive" property="receive" />
+        <result column="pass" property="pass" />
+        <result column="unpass" property="unpass" />
+        <result column="examining_num" property="examiningNum" />
+        <result column="user_id" property="userId" />
+        <result column="abolish" property="abolish" />
+        <result column="statistics_time" property="statisticsTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, receive, pass, unpass, examining_num, user_id, abolish, statistics_time
+    </sql>
+
+    <!--插入字段-->
+    <sql id="Insert_Column">
+       receive, pass, unpass, examining_num, user_id, abolish, statistics_time
+    </sql>
+
+    <!--int insertExamine2StatisticsDay(List<Examine2StatisticsDay> examine2StatisticsDays);-->
+    <insert id="insertExamine2StatisticsDay" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into examine2_statistics_day
+        (<include refid="Insert_Column"/>)
+        values
+        <foreach collection="list" item="Examine2StatisticsDay" index="index" separator=",">
+            (
+            #{Examine2StatisticsDay.receive}, #{Examine2StatisticsDay.pass}, #{Examine2StatisticsDay.unpass},
+            #{Examine2StatisticsDay.examiningNum}, #{Examine2StatisticsDay.userId}, #{Examine2StatisticsDay.abolish},
+            sysdate()
+            )
+        </foreach>
+    </insert>
+
+    <!--日统计列表查询-->
+    <select id="selectDayList" resultType="map">
+        select <include refid="Base_Column_List"/> from examine2_statistics_day
+        <where>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+                and (statistics_time between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.ArticleRecordMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.ArticleRecord">
+        <id column="id" property="id"/>
+        <result column="article_num" property="articleNum"/>
+        <result column="main_title" property="mainTitle"/>
+        <result column="subheading" property="subheading"/>
+        <result column="operation_type" property="operationType"/>
+        <result column="operator" property="operator"/>
+        <result column="operation_content" property="operationContent"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, article_num, main_title, subheading, operation_type, operator, operation_content, create_time
+    </sql>
+
+    <select id="selectArticleList" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from article_record
+        <where>
+            1 = 1
+            <if test=" articleNum != null and articleNum != '' ">
+                and article_num = #{articleNum}
+            </if>
+            <if test=" name != null and name != '' ">
+                and operator = #{name}
+            </if>
+        </where>
+    </select>
+
+</mapper>

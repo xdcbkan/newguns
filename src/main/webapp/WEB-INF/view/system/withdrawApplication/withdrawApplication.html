@@ -1,0 +1,69 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>提现申请管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-lg-10 col-sm-9">
+                                <div class="row">
+                                    <div class="col-lg-2 col-sm-4">
+                                        <#NameCon id="name" name="用户名称" placeholder="帐号/姓名"/>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-4">
+                                        <#SelectCon id="withdrawStatus" name="提现状态" >
+                                        <option value="">全部</option>
+                                        <option value="1">提现中</option>
+                                        <option value="2">提现完成</option>
+                                        <option value="3">提现失败</option>
+                                        </#SelectCon>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <#TimeCon id="beginTime" name="提现日期--开始" isTime="false"/>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <#TimeCon id="endTime" name="提现日期--结束" isTime="false"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-sm-3">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12">
+                                        <#button name="搜索" icon="fa-search" clickFun="WithdrawApplication.search()"/>
+                                        <#button name="重置" icon="fa-trash" clickFun="WithdrawApplication.resetSearch()" space="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="WithdrawApplicationTableToolbar" role="group">
+                            @if(shiro.hasPermission("/withdrawApplication/add")){
+                                <#button name="申请" icon="fa-plus" clickFun="WithdrawApplication.openAddWithdrawApplication()"/>
+                            @}
+                            @if(shiro.hasPermission("/withdrawApplication/paymentSuccessful")){
+                                <#button name="成功支付" icon="fa-edit" clickFun="WithdrawApplication.paymentSuccessful()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/withdrawApplication/paymentFailed")){
+                            <#button name="失败" icon="fa-edit" clickFun="WithdrawApplication.paymentFailed()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="WithdrawApplicationTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/withdrawApplication/withdrawApplication.js"></script>
+<script>
+    laydate.render({
+        elem: '#beginTime'
+    });
+    laydate.render({
+        elem: '#endTime'
+    });
+</script>
+@}

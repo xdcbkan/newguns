@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.ArticleTaskMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.ArticleTask">
+        <id column="id" property="id"/>
+        <result column="main_title" property="mainTitle"/>
+        <result column="subheading" property="subheading"/>
+        <result column="content" property="content"/>
+        <result column="timeliness_category" property="timelinessCategory"/>
+        <result column="task_status" property="taskStatus"/>
+        <result column="type" property="type"/>
+        <result column="url" property="url"/>
+        <result column="recipients_id" property="recipientsId"/>
+        <result column="recipients" property="recipients"/>
+        <result column="pick_up_time" property="pickUpTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, main_title, subheading, content, timeliness_category, task_status, url, type,recipients_id,recipients,pick_up_time
+    </sql>
+
+    <select id="selectArticleTasks" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from article_task
+        <where>
+            <if test="title != null and title != ''">
+                and (main_title like CONCAT('%',#{title},'%')
+                or subheading like CONCAT('%',#{title},'%'))
+            </if>
+            <if test="timelinessCategory != null and timelinessCategory != ''">
+                and timeliness_category = #{timelinessCategory}
+            </if>
+            <if test="taskStatus != null and taskStatus != ''">
+                and task_status = #{taskStatus}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+        </where>
+    </select>
+
+</mapper>

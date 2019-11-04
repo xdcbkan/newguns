@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.WithdrawApplicationMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.WithdrawApplication">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="ali_pay" property="aliPay"/>
+        <result column="amount" property="amount"/>
+        <result column="withdraw_status" property="withdrawStatus"/>
+        <result column="error_message" property="errorMessage"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, ali_pay, user_id, amount, withdraw_status, error_message, create_time
+    </sql>
+
+    <!--提现申请-用户联表-->
+    <sql id="Query_Column_List">
+        w.id, w.ali_pay, w.user_id, w.amount, w.withdraw_status, w.error_message, w.create_time
+    </sql>
+
+    <!--List<Map<String, Object>> selectWithdrawApplications(@Param("name") String name, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("withdrawStatus") Integer withdrawStatus, @Param("userId") Integer userId);-->
+    <select id="selectWithdrawApplications" resultType="map">
+        select
+        <include refid="Query_Column_List"/>
+        from withdraw_application w, sys_user s
+        where
+        w.user_id = s.id
+        <if test="name != null and name != ''">
+            and (s.account like CONCAT('%',#{name},'%')
+            or s.name like CONCAT('%',#{name},'%'))
+        </if>
+        <if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+            and (w.create_time between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+        </if>
+        <if test="withdrawStatus != null and withdrawStatus != ''">
+            and w.withdraw_status = #{withdrawStatus}
+        </if>
+        <if test="userId != null and userId != ''">
+            and w.user_id = #{userId}
+        </if>
+    </select>
+</mapper>

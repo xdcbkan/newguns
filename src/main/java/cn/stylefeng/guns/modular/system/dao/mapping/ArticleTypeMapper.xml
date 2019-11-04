@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.ArticleTypeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.ArticleType">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name
+    </sql>
+
+    <select id="findByName" resultType="cn.stylefeng.guns.modular.system.model.ArticleType">
+		select <include refid="Base_Column_List"/>
+		from article_type
+        where name = #{name}
+	</select>
+
+    <!--List<ArticleType> articleTypeTreeList();-->
+    <select id="articleTypeTreeList" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+		select id "id" ,name as "name"
+		from article_type
+	</select>
+
+    <!--List<ZTreeNode> articleTypeTreeListByArticleTypeId(String[] articleTypeId);-->
+    <select id="articleTypeTreeListByArticleTypeId" resultType="cn.stylefeng.guns.core.common.node.ZTreeNode">
+        SELECT
+        a.id "id",
+        NAME AS "name",
+        (
+        CASE
+        WHEN (a1.ID = 0 OR a1.ID IS NULL) THEN
+        'false'
+        ELSE
+        'true'
+        END
+        ) "checked"
+        FROM
+        article_type a
+        LEFT JOIN (
+        SELECT
+        ID
+        FROM
+        article_type
+        WHERE
+        ID IN
+
+        <foreach collection="array" index="index" item="i" open="(" separator="," close=")">
+            #{i}
+        </foreach>
+
+        ) a1 ON a.ID = a1.ID
+    </select>
+
+
+</mapper>

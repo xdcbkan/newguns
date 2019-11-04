@@ -1,0 +1,50 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>个人操作文章版本</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <#NameCon id="condition" name="名称" placeholder="主标题/文章编号" />
+                            </div>
+                        <div class="col-sm-2">
+                                <#SelectCon id="prescription" name="时效性" >
+                                <option value="0">全部</option>
+                                <option value="1">非实时或知识类文章</option>
+                                <option value="2">精品类文章</option>
+                                <option value="3">实时类文章</option>
+                                <option value="4">其他类文章</option>
+                            </#SelectCon>
+                        </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="articleTypeId" name="类型" >
+                                <option value="0">全部</option>
+                                @for(articleType in articleTypes){
+                                <option value="${articleType.id}">${articleType.name}</option>
+                                @}
+                                </#SelectCon>
+                        </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="HistoricalArticle.search()"/>
+                                <#button name="重置" icon="fa-trash" clickFun="HistoricalArticle.resetSearch()" space="true"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="HistoricalArticleTableToolbar" role="group">
+                            @if(shiro.hasPermission("/historicalArticle/personal_version")){
+                            <#button name="文章详情" icon="fa-edit" clickFun="HistoricalArticle.openHistoricalArticleDetail()" />
+                            @}
+                        </div>
+                        <#table id="HistoricalArticleTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/historicalArticle/personalOperationRecord.js"></script>
+@}

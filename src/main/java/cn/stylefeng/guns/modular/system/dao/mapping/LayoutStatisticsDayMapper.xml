@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.LayoutStatisticsDayMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.LayoutStatisticsDay">
+        <id column="id" property="id"/>
+        <result column="receive" property="receive"/>
+        <result column="user_id" property="userId"/>
+        <result column="article_num" property="articleNum"/>
+        <result column="picture_num" property="pictureNum"/>
+        <result column="statistics_time" property="statisticsTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, receive, user_id, article_num, picture_num, statistics_time
+    </sql>
+
+    <!--插入字段-->
+    <sql id="Insert_Column">
+        receive, user_id, article_num, picture_num, statistics_time
+    </sql>
+
+    <!--int insertLayoutStatisticsDay(List<LayoutStatisticsDay> layoutStatisticsDays);-->
+    <insert id="insertLayoutStatisticsDay" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into layout_statistics_day
+        (<include refid="Insert_Column"/>)
+        values
+        <foreach collection="list" item="LayoutStatisticsDay" index="index" separator=",">
+            (#{LayoutStatisticsDay.receive}, #{LayoutStatisticsDay.userId}, #{LayoutStatisticsDay.articleNum},
+            #{LayoutStatisticsDay.pictureNum}, sysdate()
+            )
+        </foreach>
+    </insert>
+
+    <!--日统计列表查询-->
+    <select id="selectDayList" resultType="map">
+        select <include refid="Base_Column_List"/> from layout_statistics_day
+        <where>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+                and (statistics_time between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+            </if>
+        </where>
+    </select>
+</mapper>

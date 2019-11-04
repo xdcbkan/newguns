@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.User">
+        <id column="id" property="id" />
+        <result column="avatar" property="avatar" />
+        <result column="account" property="account" />
+        <result column="password" property="password" />
+        <result column="salt" property="salt" />
+        <result column="balance" property="balance" />
+        <result column="name" property="name" />
+        <result column="birthday" property="birthday" />
+        <result column="sex" property="sex" />
+        <result column="email" property="email" />
+        <result column="phone" property="phone" />
+        <result column="idcard" property="idcard" />
+        <result column="alipay" property="alipay" />
+        <result column="residuereceivenum" property="residuereceivenum" />
+        <result column="receivenum" property="receivenum" />
+        <result column="price" property="price" />
+        <result column="userid" property="userid" />
+        <result column="usernumber" property="usernumber" />
+        <result column="roleid" property="roleid" />
+        <result column="articletypeid" property="articletypeid" />
+        <result column="passnum" property="passnum" />
+        <result column="deptid" property="deptid" />
+        <result column="status" property="status" />
+        <result column="createtime" property="createtime" />
+        <result column="version" property="version" />
+        <result column="office_address" property="officeAddress" />
+        <result column="entry_time" property="entryTime" />
+        <result column="wechatid" property="wechatid" />
+        <result column="qqid" property="qqid" />
+        <result column="sinaid" property="sinaid" />
+        <result column="employee_type" property="employeeType" />
+        <result column="employee_status" property="employeeStatus" />
+        <result column="post_rank" property="postRank" />
+        <result column="nation" property="nation" />
+        <result column="id_address" property="idAddress" />
+        <result column="certificate_validity_period" property="certificateValidityPeriod" />
+        <result column="first_time_worke" property="firstTimeWorke" />
+        <result column="marital_status" property="maritalStatus" />
+        <result column="registration_type" property="registrationType" />
+        <result column="current_address" property="currentAddress" />
+        <result column="political_outlook" property="politicalOutlook" />
+        <result column="social_security_account" property="socialSecurityAccount" />
+        <result column="provident_fund_account" property="providentFundAccount" />
+        <result column="education" property="education" />
+        <result column="university" property="university" />
+        <result column="graduation_time" property="graduationTime" />
+        <result column="major" property="major" />
+        <result column="contract_company" property="contractCompany" />
+        <result column="contract_type" property="contractType" />
+        <result column="first_contract_origin" property="firstContractOrigin" />
+        <result column="first_contract_expire" property="firstContractExpire" />
+        <result column="current_contract_origin" property="currentContractOrigin" />
+        <result column="current_contract_expire" property="currentContractExpire" />
+        <result column="contract_period" property="contractPeriod" />
+        <result column="renewal_times" property="renewalTimes" />
+        <result column="emergency_contact_name" property="emergencyContactName" />
+        <result column="emergency_contact_relationship" property="emergencyContactRelationship" />
+        <result column="emergency_contact_sex" property="emergencyContactSex" />
+        <result column="emergency_contact_phone" property="emergencyContactPhone" />
+        <result column="without_children" property="withoutChildren" />
+        <result column="children_name" property="childrenName" />
+        <result column="children_sex" property="childrenSex" />
+        <result column="children_birthday" property="childrenBirthday" />
+        <result column="id_card_positive" property="idCardPositive" />
+        <result column="id_card_back" property="idCardBack" />
+        <result column="academic_certificate" property="academicCertificate" />
+        <result column="diploma" property="diploma" />
+        <result column="leaving_certificate" property="leavingCertificate" />
+        <result column="photo" property="photo" />
+        <result column="project_type_id" property="projectTypeId" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, avatar, account, password, salt, balance, name, birthday, sex, email, phone, idcard, alipay, residuereceivenum, receivenum, price, userid, usernumber, roleid, articletypeid, passnum, deptid, status, createtime, version, office_address, entry_time, wechatid, qqid, sinaid, employee_type,employee_status, post_rank, nation, id_address, certificate_validity_period, first_time_worke, marital_status, registration_type, current_address, political_outlook, social_security_account, provident_fund_account, education, university, graduation_time, major, contract_company, contract_type, first_contract_origin, first_contract_expire, current_contract_origin, current_contract_expire, contract_period, renewal_times, emergency_contact_name, emergency_contact_relationship, emergency_contact_sex, emergency_contact_phone, without_children, children_name, children_sex, children_birthday, id_card_positive, id_card_back, academic_certificate, diploma, leaving_certificate, photo,project_type_id
+    </sql>
+
+    <sql id="Base_Column_List_With_Pwd">
+		id, avatar, account, password, salt, balance, name, birthday, sex, email, phone, idcard, alipay, residuereceivenum, receivenum, price, userid, usernumber, roleid, articletypeid, passnum, deptid, status, createtime, version, office_address, entry_time, wechatid, qqid, sinaid, employee_type,employee_status, post_rank, nation, id_address, certificate_validity_period, first_time_worke, marital_status, registration_type, current_address, political_outlook, social_security_account, provident_fund_account, education, university, graduation_time, major, contract_company, contract_type, first_contract_origin, first_contract_expire, current_contract_origin, current_contract_expire, contract_period, renewal_times, emergency_contact_name, emergency_contact_relationship, emergency_contact_sex, emergency_contact_phone, without_children, children_name, children_sex, children_birthday, id_card_positive, id_card_back, academic_certificate, diploma, leaving_certificate, photo,project_type_id
+	</sql>
+
+    <select id="selectUsers" resultType="map">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where status != 3
+        <if test="name != null and name != ''">
+            and (phone like CONCAT('%',#{name},'%')
+            or account like CONCAT('%',#{name},'%')
+            or name like CONCAT('%',#{name},'%'))
+        </if>
+        <if test="deptid != null and deptid != 0">
+            and (deptid = #{deptid} or deptid in ( select id from sys_dept where pids like CONCAT('%[', #{deptid}, ']%')
+            ))
+        </if>
+        <if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+            and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+        </if>
+    </select>
+
+    <update id="setStatus">
+		update sys_user set status = #{status} where id =
+		#{userId}
+	</update>
+
+    <update id="changePwd">
+		update sys_user set password = #{pwd} where id =
+		#{userId}
+	</update>
+
+    <update id="setRoles">
+		update sys_user set roleid = #{roleIds} where id =
+		#{userId}
+	</update>
+
+    <update id="setArticleTypes">
+		update sys_user set articletypeid = #{articleTypeIds} where id =
+		#{userId}
+	</update>
+
+    <!--int setProjectTypes(@Param("userId") Integer userId, @Param("projectTypeIds") String projectTypeIds);-->
+    <update id="setProjectTypes">
+		update sys_user set project_type_id = #{projectTypeIds} where id =
+		#{userId}
+	</update>
+
+    <select id="getByAccount" resultType="cn.stylefeng.guns.modular.system.model.User">
+        select
+        <include refid="Base_Column_List_With_Pwd"/>
+        from sys_user where account = #{account} and status != 3
+    </select>
+
+    <select id="selectByUserNumber" resultType="cn.stylefeng.guns.modular.system.model.User">
+        select
+        <include refid="Base_Column_List_With_Pwd"/>
+        from sys_user where usernumber = #{usernumber} and status != 3
+    </select>
+
+    <update id="deduction">
+		update sys_user set balance = balance-#{price} where id = #{userId}
+	</update>
+
+    <select id="selectEdit" resultType="int">
+		select count(id) from sys_user where roleid = 6
+	</select>
+
+    <!--领取文章后减少一次剩余领取数-->
+    <update id="setUserReceiveNum">
+		update sys_user set residuereceivenum = residuereceivenum -1 where id = #{userId}
+	</update>
+
+    <!--List<Integer> selectAllEditorId();-->
+    <select id="selectAllEditorId" resultType="int">
+		select id from sys_user WHERE FIND_IN_SET(6,roleid);
+	</select>
+
+    <!--List<Integer> selectAllExaminer1Id();-->
+    <select id="selectAllExaminer1Id" resultType="int">
+		select id from sys_user WHERE FIND_IN_SET(8,roleid);
+	</select>
+
+    <!--List<Integer> selectAllExaminer2Id();-->
+    <select id="selectAllExaminer2Id" resultType="int">
+		select id from sys_user WHERE FIND_IN_SET(9,roleid);
+	</select>
+
+    <!--List<Integer> selectAllLayoutId();-->
+    <select id="selectAllLayoutId" resultType="int">
+		select id from sys_user WHERE FIND_IN_SET(11,roleid);
+	</select>
+
+    <!--List<Integer> selectAllOperatorId();-->
+    <select id="selectAllOperatorId" resultType="int">
+		select id from sys_user WHERE FIND_IN_SET(10,roleid);
+	</select>
+
+    <!--List<Integer> selectAllSpecialPopulationsIds();-->
+    <select id="selectAllSpecialPopulationsIds" resultType="int">
+		select id from sys_user where receivenum is not null and receivenum != 0
+	</select>
+
+    <!--int resetResidueReceiveNumSpecialPopulations(List<Integer> ids);-->
+    <update id="resetResidueReceiveNumSpecialPopulations" parameterType="java.util.List">
+        update sys_user set residuereceivenum = receivenum where id in
+        (
+        <foreach collection="list" item="userId" index="index" separator=",">
+            #{userId}
+        </foreach>
+        )
+    </update>
+
+    <!--int resetResidueReceiveNumByRoleId(int roleId);-->
+    <update id="resetResidueReceiveNumByRoleId" parameterType="int">
+       update sys_user u set u.residuereceivenum =
+       (
+       select r.receivenum FROM sys_role r where r.id = #{roleId}
+       )
+       where  u.receivenum is null and FIND_IN_SET(#{roleId},u.roleid)
+    </update>
+
+</mapper>

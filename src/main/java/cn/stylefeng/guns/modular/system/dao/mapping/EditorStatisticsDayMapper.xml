@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.system.dao.EditorStatisticsDayMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.system.model.EditorStatisticsDay">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="submit" property="submit"/>
+        <result column="examine1_return" property="examine1Return"/>
+        <result column="examine2_return" property="examine2Return"/>
+        <result column="examine1_return_edit1" property="examine1ReturnEdit1"/>
+        <result column="examine1_return_edit2" property="examine1ReturnEdit2"/>
+        <result column="examine2_return_edit1" property="examine2ReturnEdit1"/>
+        <result column="examine2_return_edit2" property="examine2ReturnEdit2"/>
+        <result column="abolish" property="abolish"/>
+        <result column="pass" property="pass"/>
+        <result column="settlement_amount" property="settlementAmount"/>
+        <result column="statistics_time" property="statisticsTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, user_id, submit, examine1_return, examine2_return, examine1_return_edit1, examine1_return_edit2, examine2_return_edit1, examine2_return_edit2, abolish, pass, settlement_amount, statistics_time
+    </sql>
+
+    <!--插入字段-->
+    <sql id="Insert_Column">
+        user_id, submit, examine1_return, examine2_return, examine1_return_edit1, examine1_return_edit2, examine2_return_edit1, examine2_return_edit2, abolish, pass, statistics_time
+    </sql>
+
+    <!--int insertEditorStatisticsDay(List<EditorStatisticsDay> editorStatisticsDays);-->
+    <insert id="insertEditorStatisticsDay" parameterType="java.util.List"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into editor_statistics_day
+        (<include refid="Insert_Column"/>)
+        values
+        <foreach collection="list" item="EditorStatisticsDay" index="index" separator=",">
+            (#{EditorStatisticsDay.userId}, #{EditorStatisticsDay.submit}, #{EditorStatisticsDay.examine1Return},
+            #{EditorStatisticsDay.examine2Return}, #{EditorStatisticsDay.examine1ReturnEdit1},
+            #{EditorStatisticsDay.examine1ReturnEdit2}, #{EditorStatisticsDay.examine2ReturnEdit1},
+            #{EditorStatisticsDay.examine2ReturnEdit2}, #{EditorStatisticsDay.abolish},
+            #{EditorStatisticsDay.pass}, sysdate()
+            )
+        </foreach>
+    </insert>
+
+    <!--日统计列表查询-->
+    <select id="selectDayList" resultType="map">
+        select <include refid="Base_Column_List"/> from editor_statistics_day
+        <where>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+            <if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+                and (statistics_time between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+            </if>
+        </where>
+    </select>
+
+</mapper>

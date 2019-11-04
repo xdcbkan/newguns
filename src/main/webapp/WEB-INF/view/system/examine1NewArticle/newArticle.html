@@ -1,0 +1,42 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>可领取文章</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <#NameCon id="condition" name="主标题"  placeholder="主标题/文章编号" />
+                            </div>
+                            <div class="col-sm-2">
+                                <#SelectCon id="prescription" name="时效性" >
+                                <option value="0">全部</option>
+                                <option value="1">非实时或知识类文章</option>
+                                <option value="2">精品类文章</option>
+                                <option value="3">实时类文章</option>
+                                <option value="4">其他类文章</option>
+                            </#SelectCon>
+                        </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="NewArticle.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="NewArticleTableToolbar" role="group">
+                            @if(shiro.hasPermission("/newArticle/examine1receive")){
+                            <#button name="领取" icon="fa-plus" clickFun="NewArticle.receive()"/>
+                            <#button name="批量领取" icon="fa-plus" clickFun="NewArticle.receives()"/>
+                            @}
+                        </div>
+                        <#table id="NewArticleTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/examine1NewArticle/newArticle.js"></script>
+@}

@@ -1,0 +1,96 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键id" underline="true"/>
+                            <#input id="avatar" name="头像" underline="true"/>
+                            <#input id="account" name="账号" underline="true"/>
+                            <#input id="password" name="密码" underline="true"/>
+                            <#input id="salt" name="md5密码盐" underline="true"/>
+                            <#input id="balance" name="积分余额" underline="true"/>
+                            <#input id="name" name="名字" underline="true"/>
+                            <#input id="birthday" name="生日" underline="true"/>
+                            <#input id="sex" name="性别（1：男 2：女）" underline="true"/>
+                            <#input id="email" name="电子邮件" underline="true"/>
+                            <#input id="phone" name="电话" underline="true"/>
+                            <#input id="idcard" name="身份证号" underline="true"/>
+                            <#input id="alipay" name="支付宝账号" underline="true"/>
+                            <#input id="residuereceivenum" name="剩余领取次数" underline="true"/>
+                            <#input id="receivenum" name="每日领取上限" underline="true"/>
+                            <#input id="price" name="文章单价" underline="true"/>
+                            <#input id="userid" name="介绍人id" underline="true"/>
+                            <#input id="usernumber" name="用户编号" underline="true"/>
+                            <#input id="roleid" name="角色id" underline="true"/>
+                            <#input id="articletypeid" name="文章分类id" underline="true"/>
+                            <#input id="passnum" name="文章总通过数" underline="true"/>
+                            <#input id="deptid" name="部门id" underline="true"/>
+                            <#input id="status" name="状态(1：启用  2：冻结  3：删除  4：待激活）" underline="true"/>
+                            <#input id="createtime" name="创建时间" underline="true"/>
+                            <#input id="version" name="保留字段" underline="true"/>
+                            <#input id="officeAddress" name="办公地点" underline="true"/>
+                            <#input id="entryTime" name="入职时间" underline="true"/>
+                            <#input id="wechatid" name="微信账户" underline="true"/>
+                            <#input id="qqid" name="QQ账户" underline="true"/>
+                            <#input id="sinaid" name="微博ID" underline="true"/>
+                            <#input id="employeeType" name="员工类型(合作/兼职)" underline="true"/>
+                            <#input id="employeeStatus" name="员工状态 1.合作中 2.暂停 3.废除/中止" underline="true"/>
+                            <#input id="postRank" name="岗位职级" underline="true"/>
+                            <#input id="nation" name="民族" underline="true"/>
+                            <#input id="idAddress" name="身份证地址" underline="true"/>
+                            <#input id="certificateValidityPeriod" name="证件有效期"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="firstTimeWorke" name="首次参加工作时间" underline="true"/>
+                            <#input id="maritalStatus" name="婚姻状况" underline="true"/>
+                            <#input id="registrationType" name="户籍类型(1.城镇 2.农村)" underline="true"/>
+                            <#input id="currentAddress" name="现在住址" underline="true"/>
+                            <#input id="politicalOutlook" name="政治面貌(1.团员 2.党员)" underline="true"/>
+                            <#input id="socialSecurityAccount" name="个人社保账号" underline="true"/>
+                            <#input id="providentFundAccount" name="个人公积金账号" underline="true"/>
+                            <#input id="education" name="学历" underline="true"/>
+                            <#input id="university" name="毕业院校" underline="true"/>
+                            <#input id="graduationTime" name="毕业时间" underline="true"/>
+                            <#input id="major" name="所学专业" underline="true"/>
+                            <#input id="contractCompany" name="合同公司" underline="true"/>
+                            <#input id="contractType" name="合同类型" underline="true"/>
+                            <#input id="firstContractOrigin" name="首次合同起始日" underline="true"/>
+                            <#input id="firstContractExpire" name="首次合同到期日" underline="true"/>
+                            <#input id="currentContractOrigin" name="现合同起始日" underline="true"/>
+                            <#input id="currentContractExpire" name="现合同到期日" underline="true"/>
+                            <#input id="contractPeriod" name="合同期限" underline="true"/>
+                            <#input id="renewalTimes" name="续签次数" underline="true"/>
+                            <#input id="emergencyContactName" name="紧急联系人姓名" underline="true"/>
+                            <#input id="emergencyContactRelationship" name="紧急联系人关系" underline="true"/>
+                            <#input id="emergencyContactSex" name="紧急联系人性别" underline="true"/>
+                            <#input id="emergencyContactPhone" name="联系人电话" underline="true"/>
+                            <#input id="withoutChildren" name="有无子女" underline="true"/>
+                            <#input id="childrenName" name="子女姓名" underline="true"/>
+                            <#input id="childrenSex" name="子女性别" underline="true"/>
+                            <#input id="childrenBirthday" name="子女出生日期" underline="true"/>
+                            <#input id="idCardPositive" name="身份证（人面像）" underline="true"/>
+                            <#input id="idCardBack" name="身份证（国徽面）" underline="true"/>
+                            <#input id="academicCertificate" name="学历证书" underline="true"/>
+                            <#input id="diploma" name="学位证书" underline="true"/>
+                            <#input id="leavingCertificate" name="前公司离职证明" underline="true"/>
+                            <#input id="photo" name="员工照片" underline="true"/>
+                            <#input id="projectTypeId" name="项目分类id" underline="true"/>
+                            <#input id="sysUserId" name="用户表id" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="HistoryUserinfoInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="HistoryUserinfoInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/historyUserinfo/historyUserinfo_info.js"></script>
+@}

@@ -1,0 +1,46 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="主键id" value="${item.id}" underline="true"/>
+                            <#input id="articleNum" name="文章编号" value="${item.articleNum}" underline="true"/>
+                            <#input id="mainTitle" name="主标题" value="${item.mainTitle}" underline="true"/>
+                            <#input id="subheading" name="副标题" value="${item.subheading}" underline="true"/>
+                            <#input id="content" name="文章内容" value="${item.content}" underline="true"/>
+                            <#input id="prefix" name="前缀0-6  提交 审1修1--- 审2修2" value="${item.prefix}" underline="true"/>
+                            <#input id="articleStatus" name="草稿  待审1 待审2  审1审核中  审2审核中  审1拒 审2拒 作废  待配图  配图中  文章完成   运营领取  已被购买" value="${item.articleStatus}" underline="true"/>
+                            <#input id="pictureNum" name="配图数" value="${item.pictureNum}" underline="true"/>
+                            <#input id="articleTypeId" name="文章分类id" value="${item.articleTypeId}" underline="true"/>
+                            <#input id="examine1Id" name="审1领取人id" value="${item.examine1Id}" underline="true"/>
+                            <#input id="examine2Id" name="审2领取人id" value="${item.examine2Id}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="layoutId" name="配图人id" value="${item.layoutId}" underline="true"/>
+                            <#input id="operateId" name="运营领取人id" value="${item.operateId}" underline="true"/>
+                            <#input id="purchaseId" name="购买人id" value="${item.purchaseId}" underline="true"/>
+                            <#input id="editorNewFlag" name="0非 1 是最新" value="${item.editorNewFlag}" underline="true"/>
+                            <#input id="returnMessage" name="退回/作废原因" value="${item.returnMessage}" underline="true"/>
+                            <#input id="createTime" name="创建时间" value="${item.createTime}" underline="true"/>
+                            <#input id="updateTime" name="修改时间" value="${item.updateTime}" underline="true"/>
+                            <#input id="createUserId" name="创建人" value="${item.createUserId}" underline="true"/>
+                            <#input id="updateUserId" name="修改人" value="${item.updateUserId}" underline="true"/>
+                            <#input id="articlePrice" name="文章单价" value="${item.articlePrice}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="NewArticleInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="NewArticleInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/system/layoutNewArticle/newArticle_info.js"></script>
+@}
